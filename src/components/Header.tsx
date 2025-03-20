@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./LogOutButton";
 
 export default function () {
   const user = 1;
