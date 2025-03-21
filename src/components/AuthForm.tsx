@@ -17,7 +17,9 @@ export default function AuthForm({ type }: Props) {
   const [isPending, startTransition] = useTransition();
   const handleSubmit = () => {
     console.log("form submitted");
+    router.replace("/");
   };
+
   return (
     <form action={handleSubmit}>
       <CardContent className="grid w-full items-center gap-4">
