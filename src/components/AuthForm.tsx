@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { loginAction, signUpAction } from "@/actions/user";
 
 type Props = {
   type: "Login" | "signUp";
@@ -15,8 +16,26 @@ export default function AuthForm({ type }: Props) {
   const router = useRouter();
   const isLoginForm = type === "Login";
   const [isPending, startTransition] = useTransition();
-  const handleSubmit = () => {
-    console.log("form submitted");
+  const handleSubmit = (formdata: FormData) => {
+    startTransition(async () => {
+      const email = formdata.get("email") as string;
+      const password = formdata.get("password") as string;
+      let errorMessage = null;
+      let title = null;
+      let description = null;
+      if (isLoginForm) {
+        errorMessage = (await loginAction(email, password)).errorMessage;
+        title = "Logged In";
+        description = "You have been successfully login ";
+      } else {
+        errorMessage = (await signUpAction(email, password)).errorMessage;
+        title = "sign-up";
+        description = "You have been successfully signUp";
+      }
+      if (!errorMessage) {
+        router.replace("/");
+      }
+    });
     router.replace("/");
   };
 

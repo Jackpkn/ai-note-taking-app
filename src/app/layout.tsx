@@ -36,15 +36,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <AppSidebar />
-            <div className="flex flex-col h-screen">
-              <Header />
-              <main className="flex flex-1 flex-col px-4 pt-10 xl:px-8">
-                {children}
-              </main>
-            </div>
-          </SidebarProvider>
+          {/* <SidebarProvider>
+            <AppSidebar className="flex w-full h-screen" /> */}
+          <div className="flex flex-col h-screen">
+            <Header />
+            <main className="flex flex-1 flex-col px-4 pt-10 xl:px-8">
+              {children}
+            </main>
+          </div>
+          {/* </SidebarProvider> */}
           <Toaster />
         </ThemeProvider>
       </body>
